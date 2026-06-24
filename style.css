@@ -6,115 +6,90 @@
 }
 
 body{
-  background:#050510;
+  height:100vh;
+  background:#05060a;
   color:white;
   overflow:hidden;
 }
 
+/* nền cinematic */
 .bg{
   position:fixed;
-  width:100%;
-  height:100%;
-  background: radial-gradient(circle,#6c63ff,#000);
-  animation: move 10s infinite alternate;
-  z-index:-1;
+  inset:0;
+  background: radial-gradient(circle at top,#6c63ff,transparent 60%),
+              radial-gradient(circle at bottom,#ff4d6d,transparent 60%);
+  opacity:0.4;
+  filter: blur(60px);
 }
 
-@keyframes move{
-  from{filter:blur(40px)}
-  to{filter:blur(80px)}
-}
-
-.intro,.lock,.content{
+/* màn hình */
+.screen{
   height:100vh;
-  display:flex;
+  display:none;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
+  gap:20px;
 }
 
-.lock,.content{display:none;}
+.active{
+  display:flex;
+}
 
-.inputs{
+/* intro */
+h1{
+  font-size:48px;
+  letter-spacing:2px;
+}
+
+p{
+  opacity:0.7;
+}
+
+/* button */
+button{
+  padding:12px 24px;
+  border:none;
+  border-radius:999px;
+  cursor:pointer;
+  background:white;
+  color:black;
+  font-weight:600;
+}
+
+/* input code */
+.code{
   display:flex;
   gap:10px;
-  margin:20px;
 }
 
 input{
   width:50px;
   height:60px;
-  font-size:30px;
+  font-size:28px;
   text-align:center;
-  border:none;
   border-radius:10px;
-}
-
-button{
-  padding:12px 24px;
   border:none;
-  border-radius:30px;
-  cursor:pointer;
+  outline:none;
 }
 
-.type{
-  overflow:hidden;
-  white-space:nowrap;
-  border-right:2px solid white;
-  animation: typing 3s steps(30) forwards;
-}
-
-@keyframes typing{
-  from{width:0}
-  to{width:100%}
-}
-
-.cards{
-  display:flex;
-  gap:20px;
-  margin-top:50px;
-}
-
+/* gift card */
 .card{
-  width:150px;
-  height:200px;
-  background:linear-gradient(45deg,#ff4d6d,#6c63ff);
+  padding:40px;
   border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+  max-width:400px;
 }
 
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
+/* transition mượt */
+.screen{
+  animation: fade 0.8s ease;
 }
 
-.flash::before{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:white;
-  animation:flash 0.8s ease;
-  z-index:999;
-}
-
-@keyframes flash{
-  0%{opacity:0}
-  20%{opacity:1}
-  100%{opacity:0}
-}
-
-#content{
-  opacity:0;
-  transform:scale(1.2);
-  transition:1s;
-}
-
-#content.show{
-  opacity:1;
-  transform:scale(1);
+@keyframes fade{
+  from{opacity:0; transform:scale(1.05)}
+  to{opacity:1; transform:scale(1)}
 }
