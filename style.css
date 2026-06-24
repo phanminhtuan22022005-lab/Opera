@@ -1,95 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:system-ui;
+  font-family:Inter;
 }
 
 body{
   height:100vh;
-  background:#05060a;
-  color:white;
   overflow:hidden;
-}
-
-/* nền cinematic */
-.bg{
-  position:fixed;
-  inset:0;
-  background: radial-gradient(circle at top,#6c63ff,transparent 60%),
-              radial-gradient(circle at bottom,#ff4d6d,transparent 60%);
-  opacity:0.4;
-  filter: blur(60px);
-}
-
-/* màn hình */
-.screen{
-  height:100vh;
-  display:none;
-  flex-direction:column;
+  background:black;
+  display:flex;
   justify-content:center;
   align-items:center;
+  color:white;
+}
+
+/* background layer */
+.layer{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle at center,#0b0f2a,#000);
+}
+
+/* intro title */
+.title{
+  position:absolute;
+  font-size:28px;
+  font-weight:800;
+  opacity:0;
+  animation:intro 3s ease forwards;
+}
+
+@keyframes intro{
+  0%{opacity:0;transform:scale(1.3)}
+  40%{opacity:1}
+  80%{opacity:1}
+  100%{opacity:0;transform:scale(0.9)}
+}
+
+/* main container */
+.container{
+  z-index:5;
+  width:90%;
+  max-width:420px;
   text-align:center;
-  gap:20px;
+  opacity:0;
+  animation:show 3.5s forwards;
+  animation-delay:2.5s;
 }
 
-.active{
-  display:flex;
+@keyframes show{
+  to{opacity:1}
 }
 
-/* intro */
 h1{
-  font-size:48px;
-  letter-spacing:2px;
+  font-size:24px;
+  margin-bottom:16px;
 }
 
-p{
-  opacity:0.7;
+/* glass box */
+.box{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(18px);
+  border-radius:22px;
+  padding:20px;
+}
+
+/* input */
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  text-align:center;
+  font-size:18px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  outline:none;
 }
 
 /* button */
 button{
-  padding:12px 24px;
+  width:100%;
+  margin-top:12px;
+  padding:14px;
   border:none;
-  border-radius:999px;
-  cursor:pointer;
-  background:white;
-  color:black;
-  font-weight:600;
+  border-radius:12px;
+  font-weight:800;
+  background:linear-gradient(90deg,#00c6ff,#7b2ff7);
+  color:white;
 }
 
-/* input code */
-.code{
-  display:flex;
-  gap:10px;
+/* message */
+.msg{
+  margin-top:16px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:1s;
+  line-height:1.6;
 }
 
-input{
-  width:50px;
-  height:60px;
-  font-size:28px;
-  text-align:center;
-  border-radius:10px;
-  border:none;
-  outline:none;
+/* portal */
+.portal{
+  position:absolute;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  background:conic-gradient(#00f5ff,#7b2ff7,#ff4ecd,#00f5ff);
+  filter:blur(10px);
+  animation:spin 2s linear infinite;
+  opacity:0;
 }
 
-/* gift card */
-.card{
-  padding:40px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border:1px solid rgba(255,255,255,0.1);
-  max-width:400px;
+@keyframes spin{
+  to{transform:rotate(360deg)}
 }
 
-/* transition mượt */
-.screen{
-  animation: fade 0.8s ease;
+/* gift */
+.gift{
+  position:absolute;
+  width:150px;
+  height:150px;
+  background:linear-gradient(135deg,#ff4ecd,#6a5cff);
+  border-radius:28px;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  font-size:52px;
+  box-shadow:0 0 80px rgba(123,47,247,0.8);
+  z-index:6;
 }
 
-@keyframes fade{
-  from{opacity:0; transform:scale(1.05)}
-  to{opacity:1; transform:scale(1)}
+/* shake */
+.shake{
+  animation:shake .3s infinite;
+}
+
+@keyframes shake{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-5px,5px)}
+  50%{transform:translate(5px,-5px)}
+  75%{transform:translate(-5px,-5px)}
+  100%{transform:translate(5px,5px)}
+}
+
+/* canvas */
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
 }
