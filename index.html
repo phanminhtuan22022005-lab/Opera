@@ -1,43 +1,53 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memory Vault</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<input id="code" placeholder="Enter code..."/>
+    <button onclick="start()">UNLOCK</button>
 
-<body>
-
-<div class="bg"></div>
-
-<section class="screen active" id="intro">
-  <h1>Memory Vault</h1>
-  <p>Một món quà được khóa lại ✨</p>
-  <button onclick="goLock()">Mở quà</button>
-</section>
-
-<section class="screen" id="lock">
-  <h2>Nhập mật mã</h2>
-
-  <div class="code">
-    <input maxlength="1" id="a">
-    <input maxlength="1" id="b">
-    <input maxlength="1" id="c">
-    <input maxlength="1" id="d">
+    <div class="msg" id="msg"></div>
   </div>
+</div>
 
-  <button onclick="unlock()">Unlock</button>
-  <p id="msg"></p>
-</section>
+<div class="gift" id="gift">🎁</div>
 
-<section class="screen" id="gift">
-  <div class="card">
-    <h1>✨ Chúc mừng ✨</h1>
-    <p>Chúc em một năm thật bình yên và hạnh phúc.</p>
-  </div>
-</section>
+<script>
+const canvas=document.getElementById("c");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
 
-<script src="script.js"></script>
-</body>
-</html>
+let particles=[];
+
+function Particle(){
+  this.x=innerWidth/2;
+  this.y=innerHeight/2;
+  this.vx=Math.random()*10-5;
+  this.vy=Math.random()*10-5;
+  this.alpha=1;
+  this.r=Math.random()*3+2;
+  this.color=`hsl(${Math.random()*360},100%,60%)`;
+}
+
+function boom(){
+  for(let i=0;i<180;i++) particles.push(new Particle());
+}
+
+function animate(){
+  requestAnimationFrame(animate);
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach((p,i)=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.alpha-=0.01;
+
+    ctx.globalAlpha=p.alpha;
+    ctx.beginPath();
+    ctx.fillStyle=p.color;
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+
+    if(p.alpha<=0) particles.splice(i,1);
+  });
+}
+animate();
+
+function sleep(ms){return new Promise(r=>
