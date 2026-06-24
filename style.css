@@ -1,1 +1,265 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(180deg,#040615,#101d44,#1d3173);
+    color:white;
+}
+
+/* ===== Galaxy ===== */
+
+.stars{
+    position:fixed;
+    inset:0;
+    background-image:
+    radial-gradient(white 1px,transparent 1px),
+    radial-gradient(#9fd3ff 1px,transparent 1px),
+    radial-gradient(#ffffff 2px,transparent 2px);
+    background-size:
+    70px 70px,
+    120px 120px,
+    220px 220px;
+    animation:starsMove 25s linear infinite;
+    opacity:.8;
+}
+
+@keyframes starsMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-250px);
+    }
+}
+
+/* ===== Card ===== */
+
+.container{
+
+    position:relative;
+    z-index:2;
+
+    width:360px;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:0 0 40px rgba(255,255,255,.15);
+
+}
+
+h1{
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    color:#d7e7ff;
+
+    margin-bottom:25px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    text-align:center;
+
+}
+
+button{
+
+    margin-top:18px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    background:#5d74ff;
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+/* ===== Gift ===== */
+
+.gift{
+
+    width:140px;
+
+    height:150px;
+
+    margin:30px auto;
+
+    position:relative;
+
+}
+
+.box{
+
+    width:140px;
+
+    height:100px;
+
+    background:#6f52ff;
+
+    position:absolute;
+
+    bottom:0;
+
+    border-radius:0 0 15px 15px;
+
+}
+
+.lid{
+
+    width:150px;
+
+    height:28px;
+
+    background:#9377ff;
+
+    position:absolute;
+
+    left:-5px;
+
+    top:22px;
+
+    border-radius:10px;
+
+    transition:.8s;
+
+    transform-origin:left center;
+
+}
+
+.ribbon-v{
+
+    width:18px;
+
+    height:150px;
+
+    background:#ffd84d;
+
+    position:absolute;
+
+    left:61px;
+
+}
+
+.ribbon-h{
+
+    width:140px;
+
+    height:18px;
+
+    background:#ffd84d;
+
+    position:absolute;
+
+    top:40px;
+
+}
+
+.openButton{
+
+    margin-top:10px;
+
+}
+
+/* ===== Letter ===== */
+
+#letter{
+
+    margin-top:25px;
+
+    animation:fade .8s;
+
+}
+
+#friendName{
+
+    color:#ffe87a;
+
+    margin-bottom:15px;
+
+}
+
+#wishText{
+
+    line-height:1.8;
+
+    color:white;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
