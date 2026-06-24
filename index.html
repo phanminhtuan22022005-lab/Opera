@@ -1,77 +1,49 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Gift From 18DL 🎁</title>
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Vault 🎁</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="stars"></div>
+<div class="bg"></div>
 
-<div class="container">
+<section class="intro" id="intro">
+  <h1>A Memory Locked Inside</h1>
+  <p>Nhập 4 số để mở kỷ niệm ✨</p>
+  <button onclick="showLock()">Enter</button>
+</section>
 
-    <h1>A Gift From 18DL 🎁</h1>
+<section class="lock" id="lock">
+  <h2>Enter Passcode</h2>
 
-    <p class="subtitle">
-        Mỗi người đều có một món quà dành riêng cho mình ✨
-    </p>
+  <div class="inputs">
+    <input maxlength="1" id="a">
+    <input maxlength="1" id="b">
+    <input maxlength="1" id="c">
+    <input maxlength="1" id="d">
+  </div>
 
-    <div id="loginBox">
+  <button onclick="check()">Unlock</button>
+  <p id="msg"></p>
+</section>
 
-        <input
-            type="password"
-            id="code"
-            maxlength="4"
-            placeholder="Nhập mã 4 số">
+<section class="content" id="content">
+  <h1 class="type">Chúc em một năm thật đẹp ✨</h1>
+  <p>Những ký ức này được giữ lại dành riêng cho em.</p>
 
-        <button onclick="checkCode()">
-            Mở quà 🎁
-        </button>
+  <div class="cards">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+  </div>
+</section>
 
-        <p id="error"></p>
-
-    </div>
-
-
-    <div id="giftScene" class="hidden">
-
-        <div class="gift">
-
-            <div class="lid"></div>
-
-            <div class="box"></div>
-
-            <div class="ribbon ribbon-v"></div>
-
-            <div class="ribbon ribbon-h"></div>
-
-        </div>
-
-        <button
-            class="openButton"
-            onclick="openGift()">
-            Mở hộp quà ✨
-        </button>
-
-    </div>
-
-
-
-    <div id="letter" class="hidden">
-
-        <h2 id="friendName"></h2>
-
-        <p id="wishText"></p>
-
-    </div>
-
-</div>
+<canvas id="canvas"></canvas>
 
 <script src="script.js"></script>
-
 </body>
 </html>
