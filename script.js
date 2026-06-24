@@ -1,130 +1,78 @@
-alert("script.js đã chạy");
-// =========================
-// Danh sách lời chúc
-// =========================
+let bgMusic = new Audio("assets/bg.mp3");
+bgMusic.loop = true;
 
-const wishes = {
+let unlockSound = new Audio("assets/unlock.mp3");
 
-    "1205": {
-        name: "Tuấn",
-        message: "Chúc cậu luôn vui vẻ, mạnh khỏe và đạt được mọi điều mình mong muốn. Cảm ơn vì đã đồng hành cùng 18DL ❤️"
-    },
+function showLock(){
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("lock").style.display = "flex";
 
-    "0817": {
-        name: "Lan",
-        message: "Chúc cậu luôn hạnh phúc, gặp nhiều may mắn và có thật nhiều kỷ niệm đẹp cùng 18DL ✨"
-    },
-
-    "0302": {
-        name: "Minh",
-        message: "Mong rằng mọi điều tốt đẹp nhất sẽ luôn đến với cậu. Cảm ơn vì đã là một phần của 18DL 🌌"
-    }
-
-};
-
-// =========================
-
-let currentWish = null;
-
-// =========================
-
-function checkCode(){
-
-    const code = document.getElementById("code").value.trim();
-
-    const error = document.getElementById("error");
-
-    if(wishes[code]){
-
-        currentWish = wishes[code];
-
-        document.getElementById("loginBox").classList.add("hidden");
-
-        document.getElementById("giftScene").classList.remove("hidden");
-
-    }
-
-    else{
-
-        error.innerHTML = "❌ Mã không đúng.";
-
-        error.style.color = "#ffb3b3";
-
-    }
-
+  bgMusic.volume = 0.4;
+  bgMusic.play();
 }
 
-// =========================
+function check(){
 
-function openGift(){
+  const code = "2026";
 
-    const lid = document.querySelector(".lid");
+  const input =
+    a.value + b.value + c.value + d.value;
 
-    const gift = document.querySelector(".gift");
+  if(input === code){
 
-    // rung
+    unlockSound.play();
+    document.body.classList.add("flash");
 
-    gift.animate([
+    setTimeout(()=>{
+      document.getElementById("lock").style.display = "none";
+      document.getElementById("content").classList.add("show");
+    },800);
 
-        {transform:"rotate(-4deg)"},
+  } else {
+    document.getElementById("msg").innerText = "Sai rồi 😢";
+  }
+}
 
-        {transform:"rotate(4deg)"},
+/* PARTICLE */
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-        {transform:"rotate(-4deg)"},
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-        {transform:"rotate(4deg)"},
+let particles = [];
 
-        {transform:"rotate(0deg)"}
-
-    ],{
-
-        duration:600
-
+document.addEventListener("mousemove",(e)=>{
+  for(let i=0;i<3;i++){
+    particles.push({
+      x:e.clientX,
+      y:e.clientY,
+      size:Math.random()*3,
+      speedX:(Math.random()-0.5)*2,
+      speedY:(Math.random()-0.5)*2
     });
+  }
+});
 
-    setTimeout(()=>{
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-        lid.style.transform="rotate(-35deg) translateY(-20px)";
+  particles.forEach((p,i)=>{
+    p.x += p.speedX;
+    p.y += p.speedY;
+    p.size *= 0.96;
 
-    },600);
+    ctx.fillStyle="white";
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fill();
 
-    setTimeout(()=>{
+    if(p.size < 0.2){
+      particles.splice(i,1);
+    }
+  });
 
-        document.getElementById("giftScene").classList.add("hidden");
-
-        document.getElementById("letter").classList.remove("hidden");
-
-        document.getElementById("friendName").innerHTML =
-        "🎉 Xin chào " + currentWish.name + "!";
-
-        typeWriter(currentWish.message);
-
-    },1500);
-
+  requestAnimationFrame(animate);
 }
 
-// =========================
-
-function typeWriter(text){
-
-    let i = 0;
-
-    const target = document.getElementById("wishText");
-
-    target.innerHTML = "";
-
-    const timer = setInterval(()=>{
-
-        target.innerHTML += text.charAt(i);
-
-        i++;
-
-        if(i >= text.length){
-
-            clearInterval(timer);
-
-        }
-
-    },35);
-
-}
+animate();
