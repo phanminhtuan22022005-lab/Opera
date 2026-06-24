@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memory Vault 🎁</title>
+<title>Memory Vault</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,38 +11,32 @@
 
 <div class="bg"></div>
 
-<section class="intro" id="intro">
-  <h1>A Memory Locked Inside</h1>
-  <p>Nhập 4 số để mở kỷ niệm ✨</p>
-  <button onclick="showLock()">Enter</button>
+<section class="screen active" id="intro">
+  <h1>Memory Vault</h1>
+  <p>Một món quà được khóa lại ✨</p>
+  <button onclick="goLock()">Mở quà</button>
 </section>
 
-<section class="lock" id="lock">
-  <h2>Enter Passcode</h2>
+<section class="screen" id="lock">
+  <h2>Nhập mật mã</h2>
 
-  <div class="inputs">
+  <div class="code">
     <input maxlength="1" id="a">
     <input maxlength="1" id="b">
     <input maxlength="1" id="c">
     <input maxlength="1" id="d">
   </div>
 
-  <button onclick="check()">Unlock</button>
+  <button onclick="unlock()">Unlock</button>
   <p id="msg"></p>
 </section>
 
-<section class="content" id="content">
-  <h1 class="type">Chúc em một năm thật đẹp ✨</h1>
-  <p>Những ký ức này được giữ lại dành riêng cho em.</p>
-
-  <div class="cards">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
+<section class="screen" id="gift">
+  <div class="card">
+    <h1>✨ Chúc mừng ✨</h1>
+    <p>Chúc em một năm thật bình yên và hạnh phúc.</p>
   </div>
 </section>
-
-<canvas id="canvas"></canvas>
 
 <script src="script.js"></script>
 </body>
