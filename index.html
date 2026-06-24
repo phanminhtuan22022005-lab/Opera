@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Gift From 18DL 🎁</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+    <h1>A Gift From 18DL 🎁</h1>
+
+    <p class="subtitle">
+        Mỗi người đều có một món quà dành riêng cho mình ✨
+    </p>
+
+    <div id="loginBox">
+
+        <input
+            type="password"
+            id="code"
+            maxlength="4"
+            placeholder="Nhập mã 4 số">
+
+        <button onclick="checkCode()">
+            Mở quà 🎁
+        </button>
+
+        <p id="error"></p>
+
+    </div>
+
+
+    <div id="giftScene" class="hidden">
+
+        <div class="gift">
+
+            <div class="lid"></div>
+
+            <div class="box"></div>
+
+            <div class="ribbon ribbon-v"></div>
+
+            <div class="ribbon ribbon-h"></div>
+
+        </div>
+
+        <button
+            class="openButton"
+            onclick="openGift()">
+            Mở hộp quà ✨
+        </button>
+
+    </div>
+
+
+
+    <div id="letter" class="hidden">
+
+        <h2 id="friendName"></h2>
+
+        <p id="wishText"></p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
